@@ -1,0 +1,1 @@
+# Architektur_STG_08042019
