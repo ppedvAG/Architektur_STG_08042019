@@ -29,7 +29,6 @@ namespace ppedv.Annoy_o_tron.Data.EF
             //System.Data.Entity.ModelConfiguration.Conventions.
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-
             //vererbung wird als table-per-type gemappt
             modelBuilder.Entity<Template>().ToTable("Templates");
             modelBuilder.Entity<Daily>().ToTable("DailyTemplates");
@@ -38,6 +37,25 @@ namespace ppedv.Annoy_o_tron.Data.EF
             modelBuilder.Entity<Person>().HasMany(x => x.ProcessesAsAssignee).WithMany(x => x.Assignees);//m:n
             modelBuilder.Entity<Person>().HasMany(x => x.ProcessesAsTasker).WithOptional(x => x.Tasker);//1:n
 
+            modelBuilder.Entity<Process>().HasMany(x => x.WorkItems).WithRequired(x => x.Process).WillCascadeOnDelete(true);
+
+        }
+
+
+        public override int SaveChanges()
+        {
+            foreach (var item in ChangeTracker.Entries<Entity>().Where(x => x.State == EntityState.Added))
+            {
+                item.Entity.Created = DateTime.Now;
+                item.Entity.Modified = DateTime.Now;
+            }
+
+            foreach (var item in ChangeTracker.Entries<Entity>().Where(x => x.State == EntityState.Modified))
+            {
+                item.Entity.Modified = DateTime.Now;
+            }
+
+            return base.SaveChanges();
         }
     }
 }
