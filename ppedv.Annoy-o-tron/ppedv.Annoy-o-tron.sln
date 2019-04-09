@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Annoy-o-tron.Model", "ppedv.Annoy-o-tron.Model\ppedv.Annoy-o-tron.Model.csproj", "{191F827C-7EA6-48C0-A869-7DAFCB4E8D2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Annoy_o_tron.Data.EF", "ppedv.Annoy_o_tron.Data.EF\ppedv.Annoy_o_tron.Data.EF.csproj", "{41B3D873-4DDA-49FC-9D53-C7D240D89AF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.Annoy_o_tron.Data.EF.Tests", "ppedv.Annoy_o_tron.Data.EF.Tests\ppedv.Annoy_o_tron.Data.EF.Tests.csproj", "{557E096D-E7B1-4032-BB7D-8414290364F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{191F827C-7EA6-48C0-A869-7DAFCB4E8D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{191F827C-7EA6-48C0-A869-7DAFCB4E8D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{191F827C-7EA6-48C0-A869-7DAFCB4E8D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B3D873-4DDA-49FC-9D53-C7D240D89AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B3D873-4DDA-49FC-9D53-C7D240D89AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B3D873-4DDA-49FC-9D53-C7D240D89AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B3D873-4DDA-49FC-9D53-C7D240D89AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557E096D-E7B1-4032-BB7D-8414290364F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557E096D-E7B1-4032-BB7D-8414290364F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557E096D-E7B1-4032-BB7D-8414290364F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557E096D-E7B1-4032-BB7D-8414290364F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
