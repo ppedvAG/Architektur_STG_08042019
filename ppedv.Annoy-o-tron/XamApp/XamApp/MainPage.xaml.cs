@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using ppedv.Annoy_o_tron.Model;
+using ppedv.Annoy_o_tron.Model.ApiDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,18 @@ namespace XamApp
         public MainPage()
         {
             InitializeComponent();
+           
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            string url = "http://localhost:26302/api/ProcessAPI";
+            string url = "http://localhost:26302/api/ProcessDTOAPI";
             using (var wc = new WebClient())
             {
                 var json = wc.DownloadString(url);
-                var proc = JsonConvert.DeserializeObject<IEnumerable<Process>>(json,new JsonSerializerSettings() {MissingMemberHandling = MissingMemberHandling.Ignore});
+
+
+                var proc = JsonConvert.DeserializeObject<IEnumerable<ProcessDTO>>(json);
                 listView.ItemsSource = proc;
             }
         }
