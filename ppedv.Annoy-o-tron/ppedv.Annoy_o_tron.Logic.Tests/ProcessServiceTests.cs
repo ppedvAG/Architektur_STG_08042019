@@ -8,10 +8,10 @@ using ppedv.Annoy_o_tron.Model.Contracts;
 namespace ppedv.Annoy_o_tron.Logic.Tests
 {
     [TestClass]
-    public class CoreTests
+    public class ProcessServiceTests
     {
         [TestMethod]
-        public void Core_GetItemsOfTheDay_only_processes_of_the_future_return_no_items()
+        public void ProcessService_GetItemsOfTheDay_only_processes_of_the_future_return_no_items()
         {
             var repoMock = new Mock<IRepository<Process>>();
             repoMock.Setup(x => x.Query()).Returns(() =>
@@ -26,13 +26,13 @@ namespace ppedv.Annoy_o_tron.Logic.Tests
 
             var core = new Core(uowMock.Object);
 
-            var result = core.GetItemsOfTheDay(DateTime.Now);
+            var result = core.ProcessService.GetItemsOfTheDay(DateTime.Now);
 
             Assert.IsTrue(result.Count() == 0);
         }
 
         [TestMethod]
-        public void Core_GetItemsOfTheDay_one_daily()
+        public void ProcessService_GetItemsOfTheDay_one_daily()
         {
             var repoMock = new Mock<IRepository<Process>>();
             repoMock.Setup(x => x.Query()).Returns(() =>
@@ -47,7 +47,7 @@ namespace ppedv.Annoy_o_tron.Logic.Tests
 
             var core = new Core(uowMock.Object);
 
-            var result = core.GetItemsOfTheDay(new DateTime(2019, 4, 9));
+            var result = core.ProcessService.GetItemsOfTheDay(new DateTime(2019, 4, 9));
 
             Assert.IsTrue(result.Count() == 1);
         }

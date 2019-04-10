@@ -16,7 +16,7 @@ namespace ppedv.Annoy_o_tron.UI.TestConsole
 
             var core = new Core();
 
-            //core.CreateDemoData();
+            //core.DemoDatenService.CreateDemoData();
 
             foreach (var p in core.UoW.GetRepo<Process>().GetAll())
             {
