@@ -5,15 +5,13 @@ using System.Text;
 
 namespace ppedv.Annoy_o_tron.Model.Contracts
 {
-    public interface IRepository
+    public interface IRepository<T> where T : Entity
     {
-        IQueryable<T> Query<T>() where T : Entity;
-        IEnumerable<T> GetAll<T>() where T : Entity;
-        T GetById<T>(int id) where T : Entity;
-        void Add<T>(T entity) where T : Entity;
-        void Delete<T>(T entity) where T : Entity;
-        void Update<T>(T entity) where T : Entity;
-
-        int SaveAll();
+        IQueryable<T> Query();
+        IEnumerable<T> GetAll();
+        T GetById(int id);
+        void Add(T entity);
+        void Delete(T entity);
+        void Update(T entity);
     }
 }

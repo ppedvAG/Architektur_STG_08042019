@@ -8,21 +8,22 @@ namespace ppedv.Annoy_o_tron.Logic
 {
     public class Core
     {
-        public IRepository Repository { get; }
+        public IUnitOfWork UoW { get; }
 
-        public Core(IRepository repo)//todo Dependency Injection in here
+        public Core(IUnitOfWork uow)//todo Dependency Injection in here
         {
-            Repository = repo;
+            UoW = uow;
         }
 
-        public Core() : this(new Data.EF.EfRepository())
+        public Core() : this(new Data.EF.EfUnitOfWork())
         {
 
         }
 
         public IEnumerable<Process> GetItemsOfTheDay(DateTime day)
         {
-            foreach (var item in Repository.Query<Process>().Where(x => x.Created <= day))
+            //foreach (var item in UoW.ProcessRepository.Query().Where(x => x.Created <= day))
+            foreach (var item in UoW.GetRepo<Process>().Query().Where(x => x.Created <= day))
             {
                 if (item.Template is Daily d)
                 {
@@ -61,9 +62,9 @@ namespace ppedv.Annoy_o_tron.Logic
 
             pro1.Template = new Daily() { OnlyWorkdays = true };
 
-            Repository.Add(pro1);
+            UoW.GetRepo<Process>().Add(pro1);
 
-            Repository.SaveAll();
+            UoW.SaveAll();
         }
     }
 }

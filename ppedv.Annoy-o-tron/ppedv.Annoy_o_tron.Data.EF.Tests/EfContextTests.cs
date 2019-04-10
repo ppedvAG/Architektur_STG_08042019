@@ -72,9 +72,9 @@ namespace ppedv.Annoy_o_tron.Data.EF.Tests
             var fix = new Fixture();
             fix.Behaviors.Add(new OmitOnRecursionBehavior());
             fix.Customizations.Add(new TypeRelay(typeof(Template), typeof(Daily)));
-            //var proc = fix.Build<Process>().Without(x => x.Template).Create();
             var proc = fix.Create<Process>();
 
+            //var proc = fix.Build<Process>().Without(x => x.Template).Create();
 
             using (var con = new EfContext())
             {

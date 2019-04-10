@@ -1,6 +1,5 @@
 ﻿using ppedv.Annoy_o_tron.Model;
 using ppedv.Annoy_o_tron.Model.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,43 +7,44 @@ using System.Threading.Tasks;
 
 namespace ppedv.Annoy_o_tron.Data.EF
 {
-    public class EfRepository : IRepository
-    {
-        EfContext con = new EfContext();
 
-        public void Add<T>(T entity) where T : Entity
+    public class EfRepository<T> : IRepository<T> where T : Entity
+    {
+        protected EfContext con;
+        public EfRepository(EfContext con)
+        {
+            this.con = con;
+        }
+
+        public void Add(T entity)
         {
             con.Set<T>().Add(entity);
         }
 
-        public void Delete<T>(T entity) where T : Entity
+        public void Delete(T entity)
         {
             con.Set<T>().Remove(entity);
         }
 
-        public IEnumerable<T> GetAll<T>() where T : Entity
+        public IEnumerable<T> GetAll()
         {
             return con.Set<T>().ToList();
         }
 
-        public T GetById<T>(int id) where T : Entity
+        public T GetById(int id)
         {
             return con.Set<T>().Find(id);
         }
 
-        public IQueryable<T> Query<T>() where T : Entity
+        public IQueryable<T> Query()
         {
             return con.Set<T>();
         }
 
-        public int SaveAll()
-        {
-            return con.SaveChanges();
-        }
 
-        public void Update<T>(T entity) where T : Entity
+        public void Update(T entity)
         {
-            var loaded = GetById<T>(entity.Id);
+            var loaded = GetById(entity.Id);
             if (loaded != null)
                 con.Entry(loaded).CurrentValues.SetValues(entity);
         }
