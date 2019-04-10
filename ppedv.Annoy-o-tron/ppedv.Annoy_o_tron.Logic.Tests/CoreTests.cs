@@ -34,7 +34,7 @@ namespace ppedv.Annoy_o_tron.Logic.Tests
             var mock = new Mock<IRepository>();
             mock.Setup(x => x.Query<Process>()).Returns(() =>
             {
-                var p1 = new Process() { Created = DateTime.Now.AddDays(-1) };
+                var p1 = new Process() { Created = new DateTime(2019, 4, 8) };
                 p1.Template = new Daily() { OnlyWorkdays = true };
                 return new[] { p1 }.AsQueryable();
             });

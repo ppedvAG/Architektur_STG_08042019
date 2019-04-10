@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoFixture;
+using AutoFixture.Kernel;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ppedv.Annoy_o_tron.Model;
@@ -70,8 +71,10 @@ namespace ppedv.Annoy_o_tron.Data.EF.Tests
         {
             var fix = new Fixture();
             fix.Behaviors.Add(new OmitOnRecursionBehavior());
-
+            fix.Customizations.Add(new TypeRelay(typeof(Template), typeof(Daily)));
+            //var proc = fix.Build<Process>().Without(x => x.Template).Create();
             var proc = fix.Create<Process>();
+
 
             using (var con = new EfContext())
             {
