@@ -18,10 +18,10 @@ namespace ppedv.Annoy_o_tron.Logic
             UoW = uow;
         }
 
-        public Core() : this(new Data.EF.EfUnitOfWork())
-        {
+        //public Core() : this(new Data.EF.EfUnitOfWork())
+        //{
 
-        }
+        //}
 
     }
 }

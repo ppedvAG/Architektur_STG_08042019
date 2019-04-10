@@ -1,8 +1,11 @@
-﻿using ppedv.Annoy_o_tron.Logic;
+﻿using Ninject;
+using ppedv.Annoy_o_tron.Logic;
 using ppedv.Annoy_o_tron.Model;
+using ppedv.Annoy_o_tron.Model.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +17,17 @@ namespace ppedv.Annoy_o_tron.UI.TestConsole
         {
             Console.WriteLine("*** Annoy-o-tron v0.1 PREMIUM ***");
 
-            var core = new Core();
+            var ass = Assembly.LoadFile(@"C:\temp\Architektur_STG_08042019\ppedv.Annoy-o-tron\ppedv.Annoy_o_tron.Data.EF\bin\Debug\ppedv.Annoy_o_tron.Data.EF.dll"); 
+            //var uowLLL = ass.GetTypes().FirstOrDefault(x => x.IsAssignableFrom(typeof(IUnitOfWork))); ///geht auch nciht ????? why???
+            var uow = ass.GetTypes().FirstOrDefault(x => x.GetInterfaces().Contains(typeof(IUnitOfWork)));
+
+            //geht nicht ???? 
+            //IKernel kernel = new StandardKernel();
+            //kernel.Load("*.dll");
+            //var uow = kernel.Get<IUnitOfWork>();
+            //var core = new Core(uow);
+
+            var core = new Core(Activator.CreateInstance(uow, "Server=.;Database=Annoy_dev;Trusted_Connection=true;") as IUnitOfWork);
 
             //core.DemoDatenService.CreateDemoData();
 

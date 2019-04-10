@@ -12,10 +12,16 @@ namespace ppedv.Annoy_o_tron.Data.EF
             return new EfRepository<T>(con);
         }
 
-        EfContext con = new EfContext();
         public int SaveAll()
         {
             return con.SaveChanges();
+        }
+
+        EfContext con = null;
+
+        public EfUnitOfWork(string conString)
+        {
+            con = new EfContext(conString);
         }
     }
 }

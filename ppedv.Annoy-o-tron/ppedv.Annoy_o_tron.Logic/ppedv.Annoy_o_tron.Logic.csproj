@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ppedv.Annoy-o-tron.Model\ppedv.Annoy-o-tron.Model.csproj" />
-    <ProjectReference Include="..\ppedv.Annoy_o_tron.Data.EF\ppedv.Annoy_o_tron.Data.EF.csproj" />
   </ItemGroup>
 
 </Project>
